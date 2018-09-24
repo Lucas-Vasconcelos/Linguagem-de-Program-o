@@ -24,3 +24,69 @@ public class Exercicio3 {
     
 }
  
+------------------------------------------
+package atividade3;
+
+public class ContaExcecao extends Exception {
+
+    private String msg;
+    private double saldoAnt;
+
+    @Override
+    public String getMessage() {
+        return msg;
+    }
+
+    public void setMessage(String msg) {
+        this.msg = msg;
+    }
+
+    public ContaExcecao(double saldoAnt) {
+        setSaldoAnt(saldoAnt);
+    }
+
+    public double getSaldoAnt() {
+        return saldoAnt;
+    }
+
+    public void setSaldoAnt(double saldoAnt) {
+        this.saldoAnt = saldoAnt;
+    }
+}
+-----------------------------------------------------
+package atividade3;
+
+import atividade3.ContaExcecao;
+
+
+public class Conta {
+  
+   private double limite;
+   private double saldo;
+   private double dinheiro;
+   
+   public double deposita (double dinheiro){
+       this.saldo = this.saldo + dinheiro;
+       return this.saldo;
+   }
+   public double saca (double dinheiro) throws ContaExcecao{
+       if (getSaldo() < dinheiro){
+            throw new ContaExcecao(getSaldo());
+        }else{
+        return (double) getSaldo() - dinheiro;
+        }
+   }
+    public double getLimite() {
+        return limite;
+    }
+    public void setLimite(double limite) {
+        this.limite = limite;
+    }
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }       
+}
+ 
