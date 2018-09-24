@@ -42,3 +42,13 @@ public class Validator {
     }
   }  
 }
+-------------------------------
+
+package trabalho;
+
+
+public class Teste {
+    public static void main(String[] args) throws CPFValidateException {
+       Validator.validarCPF("00268350108");
+    }
+}
