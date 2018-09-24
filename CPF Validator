@@ -1,0 +1,44 @@
+package trabalho;
+
+public class Validator {
+  public static void validarCPF(String cpf) throws CPFValidateException {
+    if (cpf.length() == 11) {
+      char[] cpfCharArray = cpf.toCharArray();
+      for (int i = 0; i < cpfCharArray.length; i++) {
+        if (!Character.isDigit(cpfCharArray[i])) {
+          throw new CPFComDigitosInvalidosException();
+        }
+      }
+      char dv1, dv2;
+      int soma = 0;
+      for (int i = 0; i < cpfCharArray.length - 2; i++) {
+        soma += (10 - i) * Short.parseShort(String.valueOf(cpfCharArray[i]));
+      }
+      soma %= 11;
+      soma = (int) (11 - soma);
+      if (soma > 9) {
+        dv1 = '0';
+      } else {
+        dv1 = (char) (soma + '0');
+      }
+      soma = 0;
+      for (int i = 0; i < cpfCharArray.length - 1; i++) {
+        soma += (11 - i) * Short.parseShort(String.valueOf(cpfCharArray[i]));
+      }
+      soma %= 11;
+      soma = (int) (11 - soma);
+      if (soma > 9) {
+        dv2 = '0';
+      } else {
+        dv2 = (char) (soma + '0');
+      }
+      if (dv1 == cpfCharArray[cpfCharArray.length - 2] && dv2 == cpfCharArray[cpfCharArray.length - 1]) {
+        System.out.println("O CPF é válido!");
+      } else {
+        throw new CPFInvalidoException();
+      }
+    } else {
+      throw new QtdDeDigitosException();
+    }
+  }  
+}
