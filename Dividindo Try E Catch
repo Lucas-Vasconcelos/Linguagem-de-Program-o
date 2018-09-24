@@ -1,0 +1,23 @@
+package atividade2_2708;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Atividade2_2708 {
+
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println("eu sei dividir!");
+        System.out.println("informe o primeiro valor:");
+        try {
+            int x = teclado.nextInt();
+            System.out.println("informe o segundo valos:");
+            int y = teclado.nextInt();
+            double r = (x / y);
+            System.out.println("o resultado da soma é" + r);
+        } catch (InputMismatchException|ArithmeticException ex) {
+            System.out.println("valor invalido isira numeros ");
+        }
+    }
+}
