@@ -1,0 +1,49 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Exercicio8 {
+
+    public static void main(String[] args) throws ExcecaoAcimaDeCem {
+        Scanner input = new Scanner(System.in);
+        int n = 0;
+        int soma = 0;
+        int i = 1;
+        int j = 0;
+        int num;
+        try {
+            n = input.nextInt();
+        } catch (InputMismatchException ex) {
+            System.out.println("Operação Negada: Digite um número do tipo inteiro!");
+        }
+        while (i <= n) {
+            System.out.print("Digite o " + i + "º número: ");
+            try {
+                num = input.nextInt();
+            } catch (InputMismatchException ex) {
+                System.out.println("Operação Negada: Digite um número do tipo inteiro!");
+                break;
+            }
+            try {
+                if (soma + num <= 100) {
+                    soma += num;
+                    ++i;
+                    j = i;
+                } else {
+                    i = n + 1;
+                    throw new ExcecaoAcimaDeCem();
+                }
+            } catch (ExcecaoAcimaDeCem ex) {
+                System.out.println("Operação Negada: Soma maior que 100!");
+            }
+        }
+
+        System.out.println("Soma: " + soma + ";");
+        System.out.println("Quantidade de números antes da soma dar > 100: " + (j - 1));
+        try {
+            System.out.println("Média: " + (soma / (j - 1)));
+        } catch (ArithmeticException ex) {
+            System.out.println("Operação Negada: Impossível dividir por zero!");
+        }
+    }
+}
+---------------------------------------------------------------
